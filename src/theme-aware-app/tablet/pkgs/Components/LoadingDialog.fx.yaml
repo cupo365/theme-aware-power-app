@@ -1,0 +1,125 @@
+LoadingDialog As CanvasComponent:
+    ContentLanguage: ="nl-NL"
+    CountdownFrom: =5
+    DialogFill: =RGBA(0, 68, 137, 1)
+    DialogFontSize: =24
+    DialogHeight: =768
+    DialogLoadingText: ="Aan het laden..."
+    DialogProgressText: ="(1/1) Initialiseren"
+    DialogTextColor: =RGBA(140, 201, 255, 1)
+    DialogWidth: =1366
+    Fill: =LoadingDialog.DialogFill
+    Height: =LoadingDialog.DialogHeight
+    LoadingDialogSpinner: ='loading-spinner'
+    OnReset: =Reset(tmr_RedirectTimer)
+    RedirectText: ="De data is ingeladen. Je wordt binnen X second(en) herleid naar de homepagina"
+    RedirectTo: =App.ActiveScreen
+    ResetDialog: =false
+    StartRedirect: =false
+    UserIsDeveloper: =false
+    Width: =LoadingDialog.DialogWidth
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    tmr_RedirectTimer As timer:
+        BorderColor: =Self.Fill
+        BorderThickness: =0
+        Color: =LoadingDialog.DialogTextColor
+        DisabledBorderColor: =Self.Fill
+        DisabledColor: =Self.Color
+        DisabledFill: =Self.Fill
+        Duration: =LoadingDialog.CountdownFrom * 1000
+        Fill: =RGBA(0,0,0,0)
+        FocusedBorderColor: =Self.Fill
+        FocusedBorderThickness: =0
+        Height: =70
+        HoverBorderColor: =Self.Fill
+        HoverColor: =Self.Color
+        HoverFill: =Self.Fill
+        OnTimerEnd: =Navigate(LoadingDialog.RedirectTo, Fade)
+        PressedColor: =Self.Color
+        PressedFill: =Self.Fill
+        Reset: =LoadingDialog.ResetDialog
+        Size: =LoadingDialog.DialogFontSize - 5
+        Start: =LoadingDialog.StartRedirect
+        Text: =Text(Time(0, 0, (Self.Duration-Self.Value)/1000), "[$-nl-NL]s")
+        Tooltip: =Self.Text
+        Visible: =false
+        Width: =280
+        ZIndex: =1
+
+    lbl_RedirectText As label:
+        Align: =Align.Center
+        BorderColor: =RGBA(0,0,0,0)
+        Color: =LoadingDialog.DialogTextColor
+        DisabledBorderColor: =Self.BorderColor
+        DisabledColor: =Self.Color
+        DisabledFill: =Self.Fill
+        DisplayMode: =DisplayMode.View
+        Height: =90
+        Overflow: =Overflow.Scroll
+        Role: =TextRole.Heading2
+        Size: =LoadingDialog.DialogFontSize - 5
+        Text: =Substitute(LoadingDialog.RedirectText, "X", tmr_RedirectTimer.Text)
+        Tooltip: =Self.Text
+        Visible: =LoadingDialog.StartRedirect
+        Width: =LoadingDialog.DialogWidth
+        Y: =lbl_ProgressText.Y + lbl_ProgressText.Height
+        ZIndex: =2
+
+    lbl_ProgressText As label:
+        Align: =Align.Center
+        BorderColor: =RGBA(0,0,0,0)
+        Color: =LoadingDialog.DialogTextColor
+        DisabledBorderColor: =Self.BorderColor
+        DisabledColor: =Self.Color
+        DisabledFill: =Self.Fill
+        DisplayMode: =DisplayMode.View
+        Height: =90
+        Italic: =true
+        Overflow: =Overflow.Scroll
+        Role: =TextRole.Heading2
+        Size: =LoadingDialog.DialogFontSize - 5
+        Text: =LoadingDialog.DialogProgressText
+        Tooltip: =Self.Text
+        Width: =LoadingDialog.DialogWidth
+        Y: =lbl_LoadingText.Y + lbl_LoadingText.Height + 20
+        ZIndex: =3
+
+    lbl_LoadingText As label:
+        Align: =Align.Center
+        BorderColor: =RGBA(0,0,0,0)
+        Color: =LoadingDialog.DialogTextColor
+        DisabledBorderColor: =Self.BorderColor
+        DisabledColor: =Self.Color
+        DisabledFill: =Self.Fill
+        DisplayMode: =DisplayMode.View
+        Height: =90
+        Overflow: =Overflow.Scroll
+        Role: =TextRole.Heading1
+        Size: =LoadingDialog.DialogFontSize
+        Text: =LoadingDialog.DialogLoadingText
+        Tooltip: =Self.Text
+        Width: =LoadingDialog.DialogWidth
+        Y: =img_LoadingSpinner.Y + img_LoadingSpinner.Height - 10
+        ZIndex: =4
+
+    img_LoadingSpinner As image:
+        BorderColor: =Self.Fill
+        DisabledBorderColor: =Self.Fill
+        DisabledFill: =Self.Fill
+        DisplayMode: =DisplayMode.View
+        FocusedBorderColor: =Self.Fill
+        FocusedBorderThickness: =0
+        Height: =320
+        HoverBorderColor: =Self.Fill
+        HoverFill: =Self.Fill
+        Image: =LoadingDialog.LoadingDialogSpinner
+        PressedBorderColor: =Self.Fill
+        PressedFill: =Self.Fill
+        Width: =Self.Height
+        X: =(LoadingDialog.DialogWidth - Self.Width) / 2
+        Y: =90
+        ZIndex: =5
+

@@ -1,0 +1,90 @@
+App As appinfo:
+    BackEnabled: =false
+    OnError: =Notify("Something went wrong while initializing the app. Please reopen the app.", Error, 10000)
+    OnStart: |-
+        =Concurrent(
+            ClearCollect(
+                AppSettings,
+                {
+                    Primary: {
+                        Color: ColorFade(RGBA(0, 68, 137, 1), -35%), // Dark blue
+                        TextColor: RGBA(140, 201, 255, 1), // Light blue
+                        Hover: RGBA(0, 68, 137, 1),
+                        Pressed: ColorFade( RGBA(0, 68, 137, 1), -15%)
+                    },       
+                    Secondary: {
+                        Color: RGBA(0, 68, 137, 1), // Blue
+                        TextColor: RGBA(255, 255, 255, 1), // White
+                        Hover: RGBA(245, 102, 0, 1),
+                        Pressed: ColorFade(RGBA(0, 68, 137, 1), -35%)
+                    },
+                    Tertiary: {
+                        Color: RGBA(245, 102, 0, 1), // Orange
+                        TextColor: RGBA(255, 255, 255, 1), // White
+                        Hover: RGBA(0, 68, 137, 1),
+                        Pressed: ColorFade( RGBA(0, 68, 137, 1), -15%)
+                    },          
+                    Quaternary: {
+                        Color: RGBA(140, 201, 255, 1), // Light blue
+                        TextColor: ColorFade(RGBA(0, 68, 137, 1), -35%), // Dark blue
+                        Hover: ColorFade(RGBA(140, 201, 255, 1), -5%),
+                        Pressed: ColorFade(RGBA(140, 201, 255, 1), -15%)
+                    },            
+                    Quinary: {
+                        Color: RGBA(51, 51, 51, 1), // Grey
+                        TextColor: RGBA(255, 255, 255, 1), // White
+                        Hover: ColorFade(RGBA(51, 51, 51, 1), 15%),
+                        Pressed: ColorFade(RGBA(51, 51, 51, 1), 25%)
+                    },
+                    Senary: {
+                        Color: RGBA(136, 136, 136, 1), // Light grey
+                        TextColor: RGBA(255, 255, 255, 1), // White
+                        Hover: ColorFade(RGBA(136, 136, 136, 1), -5%),
+                        Pressed: ColorFade(RGBA(136, 136, 136, 1), -15%)
+                    },
+                    Default: {
+                        Color: RGBA(255, 255, 255, 1), // White
+                        TextColor: ColorFade(RGBA(0, 68, 137, 1), -35%), // Dark blue
+                        Hover: RGBA(140, 201, 255, 1),
+                        Pressed: ColorFade(RGBA(140, 201, 255, 1), -25%)
+                    },
+                    Font: {
+                        Family: Font.'Open Sans',
+                        Size: {
+                            H1: 48,
+                            H2: 36,
+                            H3: 32,
+                            H4: 28,
+                            H5: 24,
+                            H6: 20,
+                            H7: 18,
+                            H8: 16,
+                            H9: 14,
+                            H10: 12,
+                            H11: 10,
+                            H12: 9,
+                            H13: 8,
+                            H14: 6
+                        }
+                    },
+                    Loading: {
+                        Message: "Loading...",
+                        Redirect: {
+                            Message: "You will be redirected in X second(s) to the next screen.",
+                            Countdown: 5
+                        }
+                    }
+                }
+            ),
+            ClearCollect(
+                AppContext,
+                {
+                    User: User(),
+                    Language: Language(),
+                    Today: Today(),
+                    UserIsDeveloper: Lower(User().Email) = "info@cupo365.gg"
+                }
+            )
+        )
+    StartScreen: =Developer
+

@@ -1,0 +1,15 @@
+Home As screen:
+
+    cmp_header_default_1 As Header_1:
+        DeveloperScreen: =Developer
+        Fill: =cmp_header_default_1.HeaderFill
+        HeaderFill: =Last(AppSettings).Primary.Color
+        HeaderFontSize: =Last(AppSettings).Font.Size.H5
+        HeaderHeight: =Parent.Height * 0.1171875
+        HeaderTextColor: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        HeaderWidth: =Parent.Width
+        Height: =cmp_header_default_1.HeaderHeight
+        ShowBackButton: =false
+        UserIsDeveloper: =Last(AppContext).UserIsDeveloper
+        Width: =cmp_header_default_1.HeaderWidth
+

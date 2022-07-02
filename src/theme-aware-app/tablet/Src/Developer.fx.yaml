@@ -1,0 +1,508 @@
+Developer As screen:
+    Fill: =Last(AppSettings).Default.Color
+    LoadingSpinnerColor: =Last(AppSettings).Tertiary.Color
+    OnHidden: |
+        =Concurrent(Reset(gal_default),
+        Reset(tog_default),
+        Reset(chk_default),
+        Reset(pen_default),
+        Reset(rte_default),
+        Reset(dat_default),
+        Reset(txt_default),
+        Reset(ddn_default),
+        UpdateContext({ctxLoadingDialogReset: true}),
+        UpdateContext({ctxLoadingDialogStartRedirect: false}),
+        UpdateContext({ctxLoading: false}))
+    OnVisible: |-
+        =UpdateContext({ctxLoadingDialogReset: false})
+
+    btn_default As button:
+        Color: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        Fill: =Last(AppSettings).Secondary.Color
+        FocusedBorderThickness: =2
+        Font: =Last(AppSettings).Font.Family
+        Height: =60
+        HoverBorderColor: =ColorFade(Self.HoverFill, 20%)
+        HoverColor: =Switch(Self.HoverFill, Last(AppSettings).Primary.Hover, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Hover, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Hover, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Hover, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Hover, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Hover, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        HoverFill: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.Hover, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.Hover, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.Hover, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.Hover, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.Hover, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.Hover, Last(AppSettings).Default.Hover)
+        OnSelect: =
+        PressedBorderColor: =Self.PressedFill
+        PressedColor: =Switch(Self.PressedFill, Last(AppSettings).Primary.Pressed, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Pressed, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Pressed, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Pressed, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Pressed, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Pressed, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        PressedFill: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.Pressed, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.Pressed, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.Pressed, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.Pressed, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.Pressed, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.Pressed, Last(AppSettings).Default.Pressed)
+        Size: =Last(AppSettings).Font.Size.H8
+        Text: ="Default button"
+        Tooltip: =Self.Text
+        Width: =253
+        X: =277
+        Y: =113
+        ZIndex: =1
+
+    lbl_default As label:
+        Align: =Align.Center
+        BorderColor: =RGBA(0, 18, 107, 0)
+        Color: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        DisabledBorderColor: =RGBA(56, 56, 56, 0)
+        DisplayMode: =DisplayMode.View
+        Fill: =Parent.Fill
+        Font: =Last(AppSettings).Font.Family
+        Overflow: =Overflow.Scroll
+        Size: =Last(AppSettings).Font.Size.H8
+        Text: ="Default label"
+        Tooltip: =Self.Text
+        X: =54
+        Y: =123
+        ZIndex: =2
+
+    ddn_default As dropdown:
+        AccessibleLabel: =Self.Tooltip
+        BorderColor: =Last(AppSettings).Senary.Color
+        ChevronBackground: =Last(AppSettings).Secondary.Color
+        ChevronFill: =Switch(Self.ChevronBackground, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        ChevronHoverBackground: =Switch(Self.ChevronBackground, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.Hover, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.Hover, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.Hover, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.Hover, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.Hover, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.Hover, Last(AppSettings).Default.Hover)
+        ChevronHoverFill: =Switch(Self.ChevronHoverBackground, Last(AppSettings).Primary.Hover, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Hover, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Hover, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Hover, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Hover, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Hover, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        Color: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        Default: ="Default dropdown"
+        Fill: =Parent.Fill
+        FocusedBorderThickness: =2
+        Font: =Last(AppSettings).Font.Family
+        Height: =60
+        HoverBorderColor: =ColorFade(Self.HoverFill, 20%)
+        HoverColor: =Switch(Self.HoverFill, Last(AppSettings).Primary.Hover, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Hover, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Hover, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Hover, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Hover, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Hover, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        HoverFill: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.Hover, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.Hover, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.Hover, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.Hover, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.Hover, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.Hover, Last(AppSettings).Default.Hover)
+        Items: =["Default dropdown"]
+        PressedBorderColor: =Self.PressedFill
+        PressedColor: =Switch(Self.PressedFill, Last(AppSettings).Primary.Pressed, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Pressed, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Pressed, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Pressed, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Pressed, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Pressed, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        PressedFill: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.Pressed, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.Pressed, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.Pressed, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.Pressed, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.Pressed, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.Pressed, Last(AppSettings).Default.Pressed)
+        SelectionColor: =Switch(Self.SelectionFill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        SelectionFill: =Last(AppSettings).Tertiary.Color
+        Size: =Last(AppSettings).Font.Size.H9
+        Tooltip: |-
+            =If(
+                IsBlank(Self.Selected),
+                "Selecteer een optie",
+                Self.Selected.Value
+            )
+        X: =600
+        Y: =112
+        ZIndex: =3
+
+    txt_default As text:
+        AccessibleLabel: =Self.Tooltip
+        BorderColor: =Last(AppSettings).Senary.Color
+        Color: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        Default: ="Default text input"
+        Fill: =Parent.Fill
+        FocusedBorderThickness: =2
+        Font: =Last(AppSettings).Font.Family
+        Height: =60
+        HintText: =""
+        HoverBorderColor: =ColorFade(Self.HoverFill, 20%)
+        HoverColor: =Switch(Self.HoverFill, Last(AppSettings).Primary.Hover, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Hover, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Hover, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Hover, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Hover, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Hover, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        HoverFill: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.Hover, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.Hover, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.Hover, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.Hover, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.Hover, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.Hover, Last(AppSettings).Default.Hover)
+        MaxLength: =255
+        PressedBorderColor: =Self.PressedFill
+        PressedColor: =Switch(Self.PressedFill, Last(AppSettings).Primary.Pressed, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Pressed, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Pressed, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Pressed, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Pressed, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Pressed, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        PressedFill: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.Pressed, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.Pressed, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.Pressed, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.Pressed, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.Pressed, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.Pressed, Last(AppSettings).Default.Pressed)
+        Size: =Last(AppSettings).Font.Size.H9
+        Tooltip: =If(IsBlank(Self.Text), Self.HintText, Self.Text)
+        Width: =328
+        X: =994
+        Y: =112
+        ZIndex: =4
+
+    dat_default As datepicker:
+        AccessibleLabel: =Self.Tooltip
+        BorderColor: =Last(AppSettings).Senary.Color
+        Color: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        DefaultDate: =
+        EndYear: =Year(Last(AppContext).Today)
+        Fill: =Parent.Fill
+        FocusedBorderThickness: =2
+        Font: =Last(AppSettings).Font.Family
+        Height: =60
+        IconBackground: =Last(AppSettings).Secondary.Color
+        IconFill: =Switch(Self.IconBackground, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        InputTextPlaceholder: =If(IsBlank(Self.SelectedDate),"Selecteer een datum")
+        IsEditable: =true
+        Language: =Last(AppContext).Language
+        Size: =Last(AppSettings).Font.Size.H9
+        StartOfWeek: =StartOfWeek.Monday
+        StartYear: =Year(Last(AppContext).Today) - 5
+        Tooltip: |-
+            =If(
+                IsBlank(Self.SelectedDate),
+                Self.InputTextPlaceholder,
+                Self.SelectedDate
+            )
+        X: =54
+        Y: =199
+        ZIndex: =5
+
+    rte_default As richTextEditor:
+        BorderColor: =Last(AppSettings).Senary.Color
+        Default: ="Default rich text editor"
+        Height: =213
+        Size: =Last(AppSettings).Font.Size.H9
+        Width: =389
+        X: =54
+        Y: =277
+        ZIndex: =6
+
+    pen_default As inkControl:
+        AccessibleLabel: =Self.Tooltip
+        BorderColor: =Last(AppSettings).Senary.Color
+        Color: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        Fill: =Parent.Fill
+        Size: =3
+        Tooltip: ="Zet je handtekening"
+        X: =54
+        Y: =513
+        ZIndex: =7
+
+    htm_default As htmlViewer:
+        BorderColor: =Last(AppSettings).Senary.Color
+        Color: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        Fill: =Parent.Fill
+        Font: =Last(AppSettings).Font.Family
+        HtmlText: ="Default HTML text"
+        Size: =Last(AppSettings).Font.Size.H9
+        X: =955
+        Y: =209
+        ZIndex: =8
+
+    chk_default As checkbox:
+        BorderColor: =Last(AppSettings).Senary.Color
+        CheckboxBackgroundFill: =Last(AppSettings).Default.Color
+        CheckboxSize: =Self.Size * 4
+        CheckmarkFill: =Last(AppSettings).Tertiary.Color
+        Color: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        Fill: =Parent.Fill
+        FocusedBorderThickness: =0
+        Font: =Last(AppSettings).Font.Family
+        Height: =60
+        HoverBorderColor: =ColorFade(Self.HoverFill, 20%)
+        HoverColor: =Switch(Self.HoverFill, Last(AppSettings).Primary.Hover, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Hover, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Hover, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Hover, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Hover, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Hover, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        HoverFill: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.Hover, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.Hover, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.Hover, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.Hover, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.Hover, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.Hover, Last(AppSettings).Default.Hover)
+        PressedBorderColor: =Self.PressedFill
+        PressedColor: =Switch(Self.PressedFill, Last(AppSettings).Primary.Pressed, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Pressed, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Pressed, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Pressed, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Pressed, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Pressed, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        PressedFill: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.Pressed, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.Pressed, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.Pressed, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.Pressed, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.Pressed, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.Pressed, Last(AppSettings).Default.Pressed)
+        Size: =Last(AppSettings).Font.Size.H9
+        Text: ="Default checkbox"
+        Width: =213
+        X: =464
+        Y: =199
+        ZIndex: =9
+
+    tog_default As toggleSwitch:
+        AccessibleLabel: =Self.Tooltip
+        BorderColor: =Last(AppSettings).Senary.Color
+        Color: =Last(AppSettings).Default.TextColor
+        FalseFill: =Last(AppSettings).Senary.Color
+        FalseHoverFill: =Switch(Self.FalseFill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.Hover, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.Hover, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.Hover, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.Hover, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.Hover, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.Hover, Last(AppSettings).Default.Hover)
+        FalseText: ="Nee"
+        FocusedBorderThickness: =0
+        Font: =Last(AppSettings).Font.Family
+        HandleFill: =If(Self.Value, Switch(Self.TrueFill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor), Switch(Self.FalseFill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor))
+        Height: =40
+        Size: =Last(AppSettings).Font.Size.H9
+        Tooltip: =Self.Value
+        TrueFill: =Last(AppSettings).Tertiary.Color
+        TrueHoverFill: =Switch(Self.TrueFill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.Hover, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.Hover, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.Hover, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.Hover, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.Hover, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.Hover, Last(AppSettings).Default.Hover)
+        TrueText: ="Ja"
+        Width: =130
+        X: =743
+        Y: =209
+        ZIndex: =10
+
+    icn_default As icon.Reload:
+        AccessibleLabel: =Self.Tooltip
+        BorderColor: =Last(AppSettings).Senary.Color
+        Color: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        Fill: =Parent.Fill
+        FocusedBorderThickness: =0
+        Height: =95
+        HoverBorderColor: =ColorFade(Self.HoverFill, 20%)
+        HoverColor: =Switch(Self.HoverFill, Last(AppSettings).Primary.Hover, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Hover, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Hover, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Hover, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Hover, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Hover, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        HoverFill: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.Hover, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.Hover, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.Hover, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.Hover, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.Hover, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.Hover, Last(AppSettings).Default.Hover)
+        Icon: =Icon.Reload
+        PaddingBottom: =15
+        PaddingLeft: =15
+        PaddingRight: =15
+        PaddingTop: =15
+        PressedBorderColor: =Self.PressedFill
+        PressedColor: =Switch(Self.PressedFill, Last(AppSettings).Primary.Pressed, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Pressed, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Pressed, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Pressed, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Pressed, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Pressed, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        PressedFill: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.Pressed, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.Pressed, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.Pressed, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.Pressed, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.Pressed, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.Pressed, Last(AppSettings).Default.Pressed)
+        Tooltip: |-
+            =Substitute(Text(Self.Icon), "builtinicon:", "")
+        Width: =Self.Height
+        X: =1227
+        Y: =182
+        ZIndex: =11
+
+    pdf_default As pdfViewer:
+        BorderColor: =Last(AppSettings).Senary.Color
+        DisplayMode: =DisplayMode.View
+        Fill: =Parent.Fill
+        Height: =213
+        ShowControls: =true
+        Tooltip: ="PDF"
+        Width: =294
+        X: =700
+        Y: =274
+        ZIndex: =12
+
+    img_default As image:
+        AccessibleLabel: =Self.Tooltip
+        BorderColor: =Last(AppSettings).Senary.Color
+        DisplayMode: =DisplayMode.View
+        Fill: =Parent.Fill
+        FocusedBorderThickness: =0
+        Height: =210
+        HoverBorderColor: =ColorFade(Self.HoverFill, 20%)
+        HoverFill: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.Hover, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.Hover, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.Hover, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.Hover, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.Hover, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.Hover, Last(AppSettings).Default.Hover)
+        PressedBorderColor: =Self.PressedFill
+        PressedFill: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.Pressed, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.Pressed, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.Pressed, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.Pressed, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.Pressed, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.Pressed, Last(AppSettings).Default.Pressed)
+        Width: =Self.Height
+        X: =464
+        Y: =277
+        ZIndex: =13
+
+    frm_default As form:
+        BorderColor: =Last(AppSettings).Senary.Color
+        Fill: =Parent.Fill
+        FocusedBorderThickness: =0
+        Height: =209
+        Width: =303
+        X: =1017
+        Y: =274
+        ZIndex: =14
+
+    tab_default As dataTable.datatable:
+        BorderColor: =Last(AppSettings).Senary.Color
+        BorderStyle: =BorderStyle.Solid
+        Color: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        DisplayMode: =DisplayMode.Edit
+        Fill: =Parent.Fill
+        Font: =Last(AppSettings).Font.Family
+        HeadingColor: =Switch(Self.HeadingFill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        HeadingFill: =Last(AppSettings).Secondary.Color
+        HeadingFont: =Last(AppSettings).Font.Family
+        HeadingFontWeight: =FontWeight.Semibold
+        HeadingSize: =Last(AppSettings).Font.Size.H8
+        Height: =230
+        HoverColor: =Switch(Self.HoverFill, Last(AppSettings).Primary.Hover, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Hover, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Hover, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Hover, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Hover, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Hover, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        HoverFill: =Last(AppSettings).Quaternary.Color
+        Items: =
+        NoDataText: ="Geen records gevonden."
+        SelectedColor: =Switch(Self.SelectedFill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        SelectedFill: =Last(AppSettings).Tertiary.Color
+        Size: =Last(AppSettings).Font.Size.H9
+        Width: =400
+        X: =920
+        Y: =513
+        ZIndex: =15
+
+    "gal_default As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+        Height: =230
+        Items: =CustomGallerySample
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =Min(160, Self.Height - 60)
+        Width: =400
+        X: =477
+        Y: =513
+        ZIndex: =16
+
+        rec_default As rectangle:
+            AccessibleLabel: =Self.Tooltip
+            BorderColor: =Last(AppSettings).Senary.Color
+            DisplayMode: =DisplayMode.View
+            Fill: =Last(AppSettings).Secondary.Color
+            FocusedBorderThickness: =0
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =1
+
+        icn_default_1 As icon.Reload:
+            AccessibleLabel: =Self.Tooltip
+            BorderColor: =Last(AppSettings).Senary.Color
+            Color: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+            Fill: =Parent.Fill
+            FocusedBorderThickness: =0
+            Height: =70
+            HoverBorderColor: =ColorFade(Self.HoverFill, 20%)
+            HoverColor: =Switch(Self.HoverFill, Last(AppSettings).Primary.Hover, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Hover, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Hover, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Hover, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Hover, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Hover, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+            HoverFill: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.Hover, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.Hover, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.Hover, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.Hover, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.Hover, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.Hover, Last(AppSettings).Default.Hover)
+            Icon: =Icon.ChevronRight
+            OnSelect: =Select(Parent)
+            PaddingBottom: =15
+            PaddingLeft: =15
+            PaddingRight: =15
+            PaddingTop: =15
+            PressedBorderColor: =Self.PressedFill
+            PressedColor: =Switch(Self.PressedFill, Last(AppSettings).Primary.Pressed, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Pressed, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Pressed, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Pressed, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Pressed, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Pressed, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+            PressedFill: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.Pressed, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.Pressed, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.Pressed, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.Pressed, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.Pressed, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.Pressed, Last(AppSettings).Default.Pressed)
+            Tooltip: |-
+                =Substitute(Text(Self.Icon), "builtinicon:", "")
+            Width: =Self.Height
+            X: =Parent.TemplateWidth - Self.Width - 5
+            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            ZIndex: =2
+
+        lbl_default_2 As label:
+            BorderColor: =RGBA(0, 18, 107, 0)
+            Color: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+            DisabledBorderColor: =RGBA(56, 56, 56, 0)
+            DisplayMode: =DisplayMode.View
+            Fill: =Parent.Fill
+            Font: =Last(AppSettings).Font.Family
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            Overflow: =Overflow.Scroll
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =Last(AppSettings).Font.Size.H7
+            Text: =ThisItem.SampleText
+            Tooltip: =Self.Text
+            Width: =lbl_default_1.Width
+            X: =lbl_default_1.X
+            Y: =lbl_default_1.Y + lbl_default_1.Height + 4
+            ZIndex: =3
+
+        lbl_default_1 As label:
+            BorderColor: =RGBA(0, 18, 107, 0)
+            Color: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+            DisabledBorderColor: =RGBA(56, 56, 56, 0)
+            DisplayMode: =DisplayMode.View
+            Fill: =Parent.Fill
+            Font: =Last(AppSettings).Font.Family
+            FontWeight: =FontWeight.Semibold
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            Overflow: =Overflow.Scroll
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =Last(AppSettings).Font.Size.H6
+            Text: =ThisItem.SampleHeading
+            Tooltip: =Self.Text
+            Width: =Parent.TemplateWidth - img_default_1.Width - 104
+            X: =img_default_1.X + img_default_1.Width + 24
+            Y: =44
+            ZIndex: =4
+
+        img_default_1 As image:
+            AccessibleLabel: =Self.Tooltip
+            BorderColor: =Last(AppSettings).Senary.Color
+            DisplayMode: =DisplayMode.View
+            Fill: =Parent.Fill
+            FocusedBorderThickness: =0
+            Height: =128
+            HoverBorderColor: =ColorFade(Self.HoverFill, 20%)
+            HoverFill: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.Hover, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.Hover, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.Hover, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.Hover, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.Hover, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.Hover, Last(AppSettings).Default.Hover)
+            OnSelect: =Select(Parent)
+            PressedBorderColor: =Self.PressedFill
+            PressedFill: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.Pressed, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.Pressed, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.Pressed, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.Pressed, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.Pressed, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.Pressed, Last(AppSettings).Default.Pressed)
+            Width: =Self.Height
+            X: =16
+            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            ZIndex: =6
+
+    cmp_header_default As Header:
+        BackRedirectTo: =Home
+        DeveloperScreen: =Developer
+        Fill: =cmp_header_default.HeaderFill
+        HeaderFill: =Last(AppSettings).Primary.Color
+        HeaderFontSize: =Last(AppSettings).Font.Size.H5
+        HeaderHeight: =Parent.Height * 0.1171875
+        HeaderText: ="Developer Portal"
+        HeaderTextColor: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        HeaderWidth: =Parent.Width
+        Height: =cmp_header_default.HeaderHeight
+        UserIsDeveloper: =Last(AppContext).UserIsDeveloper
+        Width: =cmp_header_default.HeaderWidth
+        ZIndex: =17
+
+    icn_default_2 As icon.Reload:
+        AccessibleLabel: =Self.Tooltip
+        BorderColor: =Last(AppSettings).Senary.Color
+        Color: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        Fill: =cmp_header_default.Fill
+        FocusedBorderThickness: =0
+        Height: =cmp_header_default.Height
+        HoverBorderColor: =ColorFade(Self.HoverFill, 20%)
+        HoverColor: =Switch(Self.HoverFill, Last(AppSettings).Primary.Hover, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Hover, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Hover, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Hover, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Hover, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Hover, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        HoverFill: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.Hover, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.Hover, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.Hover, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.Hover, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.Hover, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.Hover, Last(AppSettings).Default.Hover)
+        Icon: =Icon.OpenInNewWindow
+        OnSelect: |-
+            =UpdateContext({ctxLoadingDialogReset: false, ctxLoadingProgress: "(1/1) Initializing", ctxLoading: true})
+        PaddingBottom: =15
+        PaddingLeft: =15
+        PaddingRight: =15
+        PaddingTop: =15
+        PressedBorderColor: =Self.PressedFill
+        PressedColor: =Switch(Self.PressedFill, Last(AppSettings).Primary.Pressed, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Pressed, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Pressed, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Pressed, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Pressed, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Pressed, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+        PressedFill: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.Pressed, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.Pressed, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.Pressed, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.Pressed, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.Pressed, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.Pressed, Last(AppSettings).Default.Pressed)
+        Tooltip: |-
+            =Substitute(Text(Self.Icon), "builtinicon:", "")
+        Width: =Self.Height
+        X: =cmp_header_default.Width - Self.Width
+        Y: =cmp_header_default.Y
+        ZIndex: =18
+
+    grp_loadingdialog As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =20
+
+        cmp_loadingdialog_default As LoadingDialog:
+            CountdownFrom: =Last(AppSettings).Loading.Redirect.Countdown
+            DialogFill: =Last(AppSettings).Secondary.Color
+            DialogFontSize: =Last(AppSettings).Font.Size.H5
+            DialogHeight: =Parent.Height
+            DialogLoadingText: =Last(AppSettings).Loading.Message
+            DialogProgressText: |-
+                ="Progress: " & ctxLoadingProgress
+            DialogTextColor: =Last(AppSettings).Primary.TextColor
+            DialogWidth: =Parent.Width
+            Fill: =cmp_loadingdialog_default.DialogFill
+            Height: =cmp_loadingdialog_default.DialogHeight
+            RedirectText: =Last(AppSettings).Loading.Redirect.Message
+            RedirectTo: =Home
+            ResetDialog: =ctxLoadingDialogReset
+            StartRedirect: =ctxLoadingDialogStartRedirect
+            UserIsDeveloper: =Last(AppContext).UserIsDeveloper
+            Visible: =ctxLoading
+            Width: =cmp_loadingdialog_default.DialogWidth
+            ZIndex: =19
+
+        btn_default_1 As button:
+            Color: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+            Fill: =Last(AppSettings).Quaternary.Color
+            FocusedBorderThickness: =2
+            Font: =Last(AppSettings).Font.Family
+            Height: =60
+            HoverBorderColor: =ColorFade(Self.HoverFill, 20%)
+            HoverColor: =Switch(Self.HoverFill, Last(AppSettings).Primary.Hover, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Hover, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Hover, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Hover, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Hover, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Hover, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+            HoverFill: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.Hover, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.Hover, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.Hover, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.Hover, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.Hover, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.Hover, Last(AppSettings).Default.Hover)
+            OnSelect: |-
+                =UpdateContext({ctxLoadingDialogStartRedirect: !ctxLoadingDialogStartRedirect})
+            PressedBorderColor: =Self.PressedFill
+            PressedColor: =Switch(Self.PressedFill, Last(AppSettings).Primary.Pressed, Last(AppSettings).Primary.TextColor, Last(AppSettings).Secondary.Pressed, Last(AppSettings).Secondary.TextColor, Last(AppSettings).Tertiary.Pressed, Last(AppSettings).Tertiary.TextColor, Last(AppSettings).Quaternary.Pressed, Last(AppSettings).Quaternary.TextColor, Last(AppSettings).Quinary.Pressed, Last(AppSettings).Quinary.TextColor, Last(AppSettings).Senary.Pressed, Last(AppSettings).Senary.TextColor, Last(AppSettings).Default.TextColor)
+            PressedFill: =Switch(Self.Fill, Last(AppSettings).Primary.Color, Last(AppSettings).Primary.Pressed, Last(AppSettings).Secondary.Color, Last(AppSettings).Secondary.Pressed, Last(AppSettings).Tertiary.Color, Last(AppSettings).Tertiary.Pressed, Last(AppSettings).Quaternary.Color, Last(AppSettings).Quaternary.Pressed, Last(AppSettings).Quinary.Color, Last(AppSettings).Quinary.Pressed, Last(AppSettings).Senary.Color, Last(AppSettings).Senary.Pressed, Last(AppSettings).Default.Pressed)
+            Size: =Last(AppSettings).Font.Size.H8
+            Text: =If(ctxLoadingDialogStartRedirect, "Stop", "Start") & " countdown"
+            Tooltip: =Self.Text
+            Visible: =ctxLoading
+            Width: =253
+            X: =(Parent.Width - Self.Width) / 2
+            Y: =Parent.Height - Self.Height
+            ZIndex: =20
+
